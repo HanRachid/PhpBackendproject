@@ -1,0 +1,36 @@
+{
+    "name": "rachidodin/scandiweb",
+    "description": "Junior Developer Test Task",
+    "scripts": {
+        "test" : "pest --coverage-html='./coverage'",
+        "serve": "php -S localhost:5000 -t public"
+        },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Framework\\": "framework"
+        },
+        "config": {
+            "process-timeout": 0
+            }
+        
+    },
+    
+    "authors": [
+        {
+            "name": "Rachid",
+            "email": "handaouirachid@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
