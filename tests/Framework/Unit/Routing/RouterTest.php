@@ -33,3 +33,21 @@ it('can display notFound handler', function () {
     $actual = $router->dispatch();
     expect($actual)->toBe('404 not found');
 });
+
+it('can display custom product site', function () {
+    $router = new Router();
+    $router->add(
+        'GET',
+        '/products/view/{product}',
+        function () use ($router) {
+            $parameters = $router->current()->parameters();
+
+            return "product is {$parameters['product']}";
+        },
+    );
+
+    $_SERVER['REQUEST_URI'] = '/products/view/test';
+
+    $actual = $router->dispatch();
+    expect($actual)->toBe('product is test');
+});

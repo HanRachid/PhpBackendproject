@@ -10,8 +10,21 @@ return function (Router $router) {
     $router->add(
         'GET',
         '/products/view/{product}',
-        function () {
-            return "product is ['product']}";
+        function () use ($router) {
+            $parameters = $router->current()->parameters();
+
+            return "product is {$parameters['product']}";
+        },
+    );
+    $router->add(
+        'GET',
+        '/services/view/{service?}',
+        function () use ($router) {
+            $parameters = $router->current()->parameters();
+            if (empty($parameters['service'])) {
+                return 'all services';
+            }
+            return "service is {$parameters['service']}";
         },
     );
 };

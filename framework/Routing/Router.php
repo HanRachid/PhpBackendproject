@@ -10,10 +10,7 @@ class Router
     protected array $errorHandler = [];
     protected Route $current;
 
-    public function current()
-    {
-        return $this->current;
-    }
+
     public function add(string $method, string $path, callable $handler)
     {
         $route = $this->routes[] = new Route($method, $path, $handler);
@@ -29,14 +26,16 @@ class Router
 
         $matching = $this->match($requestMethod, $requestPath);
         if ($matching) {
+            $this->current = $matching;
             try {
                 return $matching->dispatch();
             } catch (Throwable $e) {
+                print $e;
                 return $this->dispatchError();
             }
-            if (in_array($requestPath, $paths)) {
-                return $this->dispatchNotAllowed();
-            }
+        }
+        if (in_array($requestPath, $paths)) {
+            return $this->dispatchNotAllowed();
         }
         return $this->dispatchNotFound();
     }
@@ -86,5 +85,9 @@ class Router
             $code = 301
         );
         exit;
+    }
+    public function current(): ?Route
+    {
+        return $this->current;
     }
 }

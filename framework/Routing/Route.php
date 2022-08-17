@@ -30,6 +30,8 @@ class Route
     {
         return $this->path;
     }
+
+
     public function matches(string $method, string $path): bool
     {
         if ($this->method === $method
