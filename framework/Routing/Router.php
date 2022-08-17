@@ -25,6 +25,7 @@ class Router
         $requestPath = $_SERVER['REQUEST_URI'] ?? '/';
 
         $matching = $this->match($requestMethod, $requestPath);
+        // var_dump($matching);
         if ($matching) {
             $this->current = $matching;
             try {

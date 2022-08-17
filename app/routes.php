@@ -3,8 +3,6 @@
 use Framework\Routing\Router;
 
 return function (Router $router) {
-    $router->add('GET', '/', fn () =>'hello world');
-
     $router->add('GET', '/add-product', fn () => 'c lé produit pog');
 
     $router->add(
@@ -26,5 +24,11 @@ return function (Router $router) {
             }
             return "service is {$parameters['service']}";
         },
+    );
+
+    $router->add(
+        'GET',
+        '/',
+        fn () => view('home', ['number' => 42]),
     );
 };

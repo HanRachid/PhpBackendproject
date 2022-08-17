@@ -1,12 +1,10 @@
 <?php
 
-/*
-test('example', function () {
-    expect(true)->toBeTrue();
-});
- */
-
 use Framework\Routing\Router;
+
+beforeEach(function () {
+    $_SERVER['REQUEST_URI']='/';
+});
 
 it('can match default route (root)', function () {
     $router = new Router();

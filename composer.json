@@ -12,8 +12,10 @@
         },
         "config": {
             "process-timeout": 0
-            }
-        
+            },
+        "files": [
+            "framework/helpers.php"
+        ]
     },
     
     "authors": [
