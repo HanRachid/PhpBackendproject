@@ -11,7 +11,7 @@
             "Framework\\": "framework"
         },
         "config": {
-            "process-timeout": 0
+            "process-timeout": 6000
             },
         "files": [
             "framework/helpers.php"
@@ -25,7 +25,8 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "filp/whoops": "^2.14"
     },
     "require-dev": {
         "pestphp/pest": "^1.21"

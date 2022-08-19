@@ -3,13 +3,15 @@
 namespace Framework\View\Engine;
 
 use Framework\View\Engine\Engine;
+use Framework\View\View;
 
 class BasicEngine implements Engine
 {
-    public function render(string $path, array $data = []): string
+    use HasManager;
+    public function render(View $view): string
     {
-        $contents = file_get_contents($path);
-        foreach ($data as $key => $value) {
+        $contents = file_get_contents($view->path);
+        foreach ($view->data as $key => $value) {
             $contents = str_replace(
                 '{'.$key.'}',
                 $value,

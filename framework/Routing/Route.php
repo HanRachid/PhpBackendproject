@@ -9,14 +9,21 @@ class Route
     protected string $path;
 
     protected $handler;
-
+    protected ?string $name = null;
     protected array $parameters = [];
     public function parameters(): array
     {
         return $this->parameters;
     }
-
-    public function __construct(string $method, string $path, callable $handler)
+    public function name(string $name = null)
+    {
+        if ($name) {
+            $this->name = $name;
+            return $this;
+        }
+        return $this->name;
+    }
+    public function __construct(string $method, string $path, $handler)
     {
         $this->method = $method;
         $this->path= $path;
@@ -126,6 +133,13 @@ class Route
     }
     public function dispatch()
     {
+        if (is_array($this->handler)) {
+            [$class, $method] = $this->handler;
+            if (is_string($class)) {
+                return (new $class())->{$method}();
+            }
+            return $class->{$method}();
+        }
         return call_user_func($this->handler);
     }
 }

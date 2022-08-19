@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<title>Whoosh!</title>
+<title>Whoosh! Products</title>
 <link
 rel="stylesheet"
 href="./css/style.css"
@@ -10,8 +10,7 @@ href="./css/style.css"
 </head>
 <body>
 <div class="container mx-auto font-sans">
-<h1 class="text-xl font-semibold">Welcome to Whoosh!</h1>
-<p>Here, you can buy {number} rockets.</p>
+<?php print $contents; ?>
 </div>
 </body>
 </html>
