@@ -15,11 +15,12 @@ class MinRule implements Rule
             throw new InvalidArgumentException('specify a min length');
         }
         $length = (int) $params[0];
-        strlen($data[$field]) >= $length;
+
+        return (strlen($data[$field])>=$length);
     }
-        public function getMessage(array $data, string $field, array $params)
-        {
-            $length = (int) $params[0];
-            return "{$field} should be at least {$length} characters";
-        }
+    public function getMessage(array $data, string $field, array $params)
+    {
+        $length = (int) $params[0];
+        return "{$field} should be at least {$length} characters";
+    }
 }

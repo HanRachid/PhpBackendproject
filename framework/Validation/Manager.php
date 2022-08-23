@@ -16,6 +16,8 @@ class Manager
     public function validate(array $data, array $rules): array
     {
         $errors = [];
+
+
         foreach ($rules as $field => $rulesForField) {
             foreach ($rulesForField as $rule) {
                 $name = $rule;
@@ -36,8 +38,10 @@ class Manager
         if (count($errors)) {
             $exception = new ValidationException();
             $exception->setErrors($errors);
+
             throw $exception;
         }
+
         return array_intersect_key($data, $rules);
     }
 }

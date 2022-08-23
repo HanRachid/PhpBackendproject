@@ -10,8 +10,8 @@ return function (Router $router) {
     $router->add(
         'GET',
         '/',
-        [ShowHomePageController::class, 'handle'],
-    );
+        [new ShowHomePageController($router), 'handle'],
+    )->name('home');
 
     $router->add(
         'GET',

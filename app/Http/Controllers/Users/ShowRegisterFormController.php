@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use Framework\Database\Database;
 use Framework\Routing\Router;
 
 class ShowRegisterFormController
@@ -13,7 +14,7 @@ class ShowRegisterFormController
     }
     public function handle()
     {
-        return view('users/register', [
+        return view('register', [
         'router' => $this->router,
         ]);
     }

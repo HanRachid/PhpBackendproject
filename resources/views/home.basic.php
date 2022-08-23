@@ -4,7 +4,7 @@
 <title>Whoosh!</title>
 <link
 rel="stylesheet"
-href="./css/style.css"
+href="css/style.css"
 />
 <meta charset="utf-8" />
 </head>

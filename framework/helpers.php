@@ -30,6 +30,7 @@ if (!function_exists('view')) {
         function redirect(string $url)
         {
             header("Location: {$url}");
+
             exit;
         }
     }
@@ -39,7 +40,6 @@ if (!function_exists('view')) {
             static $manager;
             if (!$manager) {
                 $manager = new Validation\Manager();
-                // let's add the rules that come with the framework
                 $manager->addRule('required', new RequiredRule());
                 $manager->addRule('email', new EmailRule());
                 $manager->addRule('min', new MinRule());

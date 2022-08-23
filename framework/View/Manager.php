@@ -64,6 +64,7 @@ class Manager
                 }
             }
         }
+
         throw new Exception("Could not resolve '{$template}'");
     }
 }

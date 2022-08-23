@@ -1,9 +1,9 @@
-@extends('layouts/products')
+<?php $this->extends('layouts/products'); ?>
 
 <h1 class="text-xl font-semibold mb-4">Register</h1>
 <form
 method="post"
-action="{{ $router->route('show-register-form') }}"
+action="<?php print $this->escape( $router->route('show-register-form') ); ?>"
 class="flex flex-col w-full space-y-4"
 <label for="name" class="flex flex-col w-full">
 <span class="flex">Name:</span>
