@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Products\ListProductsController;
+use App\Http\Controllers\RegisterArticles\RegisterArticleController;
+use App\Http\Controllers\RegisterArticles\ShowRegisterArticleController;
 use App\Http\Controllers\ShowHomePageController;
-use App\Http\Controllers\Users\RegisterUserController;
-use App\Http\Controllers\Users\ShowRegisterFormController;
 use Framework\Routing\Router;
 
 return function (Router $router) {
@@ -15,18 +15,12 @@ return function (Router $router) {
 
     $router->add(
         'GET',
-        '/products/{page?}',
-        [new ListProductsController($router), 'handle'],
-    )->name('list-products');
-
-    $router->add(
-        'GET',
-        '/register',
-        [new ShowRegisterFormController($router), 'handle'],
-    )->name('show-register-form');
+        '/addarticles',
+        [new ShowRegisterArticleController($router), 'handle'],
+    )->name('show-add-article');
     $router->add(
         'POST',
-        '/register',
-        [new RegisterUserController($router), 'handle'],
-    )->name('register-user');
+        '/addarticles',
+        [new RegisterArticleController($router), 'handle'],
+    )->name('add-article');
 };

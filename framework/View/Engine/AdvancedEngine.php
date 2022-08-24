@@ -61,6 +61,19 @@ class AdvancedEngine implements Engine
         $template = preg_replace_callback('#@endif#', function ($matches) {
             return '<?php endif; ?>';
         }, $template);
+
+        // replaces @foreach with foreach(...){...}
+        $template = preg_replace_callback(
+            '#@foreach\(([^)]+)\)#',
+            function ($matches) {
+                return '<?php foreach(' . $matches[1] . '): ?>';
+            },
+            $template
+        );
+
+        $template = preg_replace_callback('#@endforeach#', function ($matches) {
+            return '<?php endforeach; ?>';
+        }, $template);
         // replace `{{ ... }}` with `print $this->escape(...)`
         $template = preg_replace_callback('#\{\{([^}]+)\}\}#', function ($matches) {
             return '<?php print $this->escape(' . $matches[1] . '); ?>';

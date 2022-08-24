@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\RegisterArticles;
 
 use Framework\Database\Database;
 use Framework\Routing\Router;
 
-class ShowRegisterFormController
+class ShowRegisterArticleController
 {
     protected Router $router;
     public function __construct(Router $router)

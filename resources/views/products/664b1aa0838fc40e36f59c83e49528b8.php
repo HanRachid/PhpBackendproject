@@ -1,4 +1,3 @@
-<?php $this->extends('layouts/products'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>hello world!</h1>
 
-<h1 class="text-xl font-semibold">All Products</h1>
-<p>Show all products...</p>
-<?php if($next): ?>
-<a href="<?php print $this->escape( $next ); ?>">next</a>
-<?php endif; ?> 
+    <?php foreach($users as $user): ?>
+    <h1>test</h1> <?php print $this->escape($user->toArray()['name'].' '.$user->toArray()['email'].' '.$user->toArray()['password']); ?> 
+    <?php endforeach; ?>
+    
 </body>
 </html>

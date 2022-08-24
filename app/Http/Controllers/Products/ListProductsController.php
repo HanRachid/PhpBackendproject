@@ -10,6 +10,7 @@ class ListProductsController
     {
         $parameters = $this->router->current()->parameters();
         $parameters['page'] ??=1;
+
         $next = $this->router->route(
             'list-products',
             ['page' => $parameters['page'] + 1]

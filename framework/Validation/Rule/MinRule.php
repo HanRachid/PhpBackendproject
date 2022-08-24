@@ -21,6 +21,7 @@ class MinRule implements Rule
     public function getMessage(array $data, string $field, array $params)
     {
         $length = (int) $params[0];
+
         return "{$field} should be at least {$length} characters";
     }
 }

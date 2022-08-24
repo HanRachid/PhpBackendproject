@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\RegisterArticles;
 
+use App\Repositories\UserRepository;
 use Framework\Database\Database;
+use Framework\Database\DB;
 use Framework\Routing\Router;
-use PDOException;
-use Throwable;
 
-class RegisterUserController
+class RegisterArticleController
 {
     protected Router $router;
 
@@ -26,19 +26,17 @@ class RegisterUserController
         ]);
 
 
+        $db = DB::getInstance();
 
-
-        $sql = "INSERT INTO user (name, email, password)
-        VALUES ('".$data['name']."','".$data['email']."','".$data['password']."')";
-        $user = 'root';
-        $pw = 'root';
-        $server = 'localhost';
-        $dbpdo = new Database($user, $pw, $server);
-
-        if ($dbpdo->query($sql)) {
-            $dbpdo = null;
+        if ((new UserRepository($db))->deleteUser($data['email'])) {
             return redirect($this->router->route('home'));
-        };
+        } else {
+            redirect($this->router->route('register-user'));
+        }
+        /* if ($dbpdo->query($sql)) {
+            $dbpdo = null;
+
+        }; */
 
 
         $_SESSION['registered'] = true;
