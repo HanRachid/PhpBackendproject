@@ -31,7 +31,7 @@ class PhpEngine implements Engine
 
     protected function extends(string $template)
     {
-        // $this->layout = $template;
+        $this->layout = $template;
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
         $this->layouts[realpath($backtrace[0]['file'])] = $template;
         return $this;

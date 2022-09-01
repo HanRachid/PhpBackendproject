@@ -1,26 +1,40 @@
 <?php
 
-use App\Http\Controllers\Products\ListProductsController;
+
+use App\Http\Controllers\DatabaseToReactController;
+use App\Http\Controllers\ReactToDatabaseController;
+use App\Http\Controllers\ReactValidationController;
 use App\Http\Controllers\RegisterArticles\RegisterArticleController;
-use App\Http\Controllers\RegisterArticles\ShowRegisterArticleController;
+use App\Http\Controllers\RemoveFromDatabaseController;
 use App\Http\Controllers\ShowHomePageController;
 use Framework\Routing\Router;
 
 return function (Router $router) {
     $router->add(
-        'GET',
-        '/',
-        [new ShowHomePageController($router), 'handle'],
-    )->name('home');
+        'POST',
+        '/reactadd',
+        [new ReactToDatabaseController($router), 'handle'],
+    )->name('react-add');
+    $router->add('GET', '/home', fn () =>'home page');
 
     $router->add(
-        'GET',
-        '/addarticles',
-        [new ShowRegisterArticleController($router), 'handle'],
-    )->name('show-add-article');
+        'POST',
+        '/react',
+        [new DatabaseToReactController($router), 'handle'],
+    )->name('react');
     $router->add(
         'POST',
-        '/addarticles',
-        [new RegisterArticleController($router), 'handle'],
-    )->name('add-article');
+        '/reactvalidation',
+        [new ReactValidationController($router), 'handle'],
+    )->name('react-validation');
+    $router->add(
+        'POST',
+        '/reactremove',
+        [new RemoveFromDatabaseController($router), 'handle'],
+    )->name('remove');
+    $router->add(
+        'GET',
+        '/homepage',
+        fn () => "hi",
+    )->name('react');
 };

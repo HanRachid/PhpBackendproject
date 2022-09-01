@@ -9,6 +9,7 @@ use Framework\View\Engine\PhpEngine;
 use Framework\View\Manager;
 use Framework\View\View;
 use Framework\Validation;
+use Framework\Validation\Rule\UniqueRule;
 
 if (!function_exists('view')) {
     function view(string $template, array $data = []): View
@@ -43,6 +44,7 @@ if (!function_exists('view')) {
                 $manager->addRule('required', new RequiredRule());
                 $manager->addRule('email', new EmailRule());
                 $manager->addRule('min', new MinRule());
+                $manager->addRule('unique', new UniqueRule());
             }
             return $manager->validate($data, $rules);
         }

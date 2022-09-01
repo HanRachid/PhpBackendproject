@@ -13,7 +13,7 @@ class Manager
         $this->rules[$alias] = $rule;
         return $this;
     }
-    public function validate(array $data, array $rules): array
+    public function validate(array $data, array $rules)
     {
         $errors = [];
 
@@ -38,8 +38,6 @@ class Manager
         if (count($errors)) {
             $exception = new ValidationException();
             $exception->setErrors($errors);
-
-            throw $exception;
         }
 
         return array_intersect_key($data, $rules);

@@ -22,7 +22,7 @@ class DB
         $user = $_ENV['DB_USER'];
         $password = $_ENV['DB_PASSWORD'];
 
-        $this->pdo = new PDO($dsn, $user, $password);
+        $this->pdo = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET sql_mode="TRADITIONAL"'));
     }
 
     /**

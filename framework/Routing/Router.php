@@ -38,7 +38,6 @@ class Router
             } catch (Throwable $e) {
                 if ($e instanceof ValidationException) {
                     $_SESSION['errors'] = $e->getErrors();
-                    return redirect($_SERVER['HTTP_REFERER']);
                 }
                 if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === 'dev') {
                     $whoops = new Run();
@@ -84,7 +83,7 @@ class Router
     }
     public function dispatchNotFound()
     {
-        $this->errorHandlers[404] ??= fn () => "404 not found";
+        $this->errorHandlers[404] ??= fn () => "404 not found poto";
         return $this->errorHandlers[404]();
     }
     public function dispatchError()
@@ -115,19 +114,17 @@ class Router
                 $finds = [];
                 $replaces = [];
                 foreach ($parameters as $key => $value) {
-                    // one set for required parameters
                     array_push($finds, "{{$key}}");
                     array_push($replaces, $value);
-                    // ...and another for optional parameters
+
                     array_push($finds, "{{$key}?}");
                     array_push($replaces, $value);
                 }
                 $path = $route->path();
                 $path = str_replace($finds, $replaces, $path);
-                // remove any optional parameters not provided
+
                 $path = preg_replace('#{[^}]+}#', '', $path);
-                // we should think about warning if a required
-                // parameter hasn't been provided...
+
                 return $path;
             }
         }

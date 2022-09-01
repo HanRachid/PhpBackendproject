@@ -25,10 +25,6 @@ class Manager
     public function useMacro(string $name, ...$values)
     {
         if (isset($this->macros[$name])) {
-            // we bind the closure so that $this
-            // inside a macro refers to the view object
-            // which means $data and $path can be used
-            // and you can get back to the $engine...
             $bound = $this->macros[$name]->bindTo($this);
             return $bound(...$values);
         }
